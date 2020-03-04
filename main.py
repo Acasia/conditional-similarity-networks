@@ -74,7 +74,10 @@ def main():
     if args.visdom:
         global plotter 
         plotter = VisdomLinePlotter(env_name=args.name)
-    
+
+    """
+    *할일* mean, std 수치에 대해서 알아보자
+    """
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
 
@@ -82,7 +85,7 @@ def main():
     if args.conditions is not None:
         conditions = args.conditions
     else:
-        conditions = [0,1,2,3]
+        conditions = [0,1,2,3,4] #texture, fabric, shape, part, style
     
     kwargs = {'num_workers': 4, 'pin_memory': True} if args.cuda else {}
     train_loader = torch.utils.data.DataLoader(
