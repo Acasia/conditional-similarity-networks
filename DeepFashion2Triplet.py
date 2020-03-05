@@ -11,6 +11,7 @@ def deepfashion2Attribute():
     for fileNames in txtFile_names:
         attributes = dict()  # attributes = 1 : [img1, img2, img3], 2 : [img1, img2, img3], 3 : [img1, img2, img3],..
         sub_attributes = dict()
+
         '''
         sub_attributes = 
         1 : {'aline' : [img1, img2, img3], 'hline' :[img1, img2, img3], ..}
@@ -23,7 +24,7 @@ def deepfashion2Attribute():
         '''
         train / val/ test file.txt를 순서대로 읽어옴
         '''
-        with open(os.path.join('./../ASEN/data', fileNames)) as f:
+        with open(os.path.join('./../ASEN/data', fileNames), 'r') as f:
             mode_img_names = f.readlines() #filepath 들이 적혀있음.
 
         for i in range(0, len(mode_img_names)-1):
@@ -88,6 +89,9 @@ def deepfashion2Attribute():
         for i in range(1, 6): #attribute write file
             with open(os.path.join('./data/DeepFashion', '%s_'%str(i) + fileNames.split('.')[0].split('_')[1]  + '.txt'), 'w') as f:
                 for items in sub_attributes[i]:
-                    f.write("%s %s\n" % (items, sub_attributes[i][items]))
+                    f.write("%s " % items)
+                    for item in sub_attributes[i][items]:
+                        f.write('%s ' % item)
+                    f.write("\n")
 
 deepfashion2Attribute()
