@@ -100,7 +100,7 @@ class TripletImageLoader(torch.utils.data.Dataset):
                     sub = []  # 임시 저장소
                     filepaths = data.split()[1:]  # condition의 한 attribute의 file path들
                     for filepath in filepaths:
-                        sub.append(filepath.replace("'", "").replace("\n", "").replace("[", "").replace("]", "").replace(",", ""))
+                        sub.append(filepath.replace("\n", ""))
                     attribute_dict[condition].append(sub)
 
         for condition in conditions: #0, 1, 2, 3, 4
