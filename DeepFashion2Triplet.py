@@ -24,13 +24,13 @@ def deepfashion2Attribute():
         '''
         train / val/ test file.txt를 순서대로 읽어옴
         '''
-        with open(os.path.join('./../ASEN/data', fileNames), 'r') as f:
+        with open(os.path.join('./data', fileNames), 'r') as f:
             mode_img_names = f.readlines() #filepath 들이 적혀있음.
 
         for i in range(0, len(mode_img_names)-1):
             mode_img_names[i] = mode_img_names[i].replace("\n" ,"")
 
-        with open('./../ASEN/data/list_attr_cloth.txt', 'r') as f:
+        with open('./data/list_attr_cloth.txt', 'r') as f:
             attribute_name_lines = f.readlines() #attribute_name, attribute_type들이 적혀있음
 
         num_attrs = int(attribute_name_lines.pop(0).strip())  # attribute 개수(1000)
@@ -47,7 +47,7 @@ def deepfashion2Attribute():
                 if '-'.join(columns[:-1]) not in sub_attributes[int(columns[-1])].keys():
                     sub_attributes[int(columns[-1])]['-'.join(columns[:-1])] = []
 
-        with open('./../ASEN/data/list_attr_img.txt', 'r') as f:
+        with open('./data/list_attr_img.txt', 'r') as f:
             img_labels = f.readlines()
 
         num_images = int(img_labels.pop(0).strip())  # image 개수(289222)
